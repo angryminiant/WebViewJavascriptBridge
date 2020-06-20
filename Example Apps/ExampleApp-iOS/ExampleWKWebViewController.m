@@ -32,7 +32,7 @@
         responseCallback(@"Response from js_ios_role");
     }];
     
-    [_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
+    [_bridge callHandler:@"oc_js_role" data:@{ @"foo":@"before ready" }];
     
     [self renderButtons:webView];
     [self loadExamplePage:webView];
@@ -66,8 +66,8 @@
 
 - (void)callHandler:(id)sender {
     id data = @{ @"greetingFromObjC": @"Hi there, JS!" };
-    [_bridge callHandler:@"testJavascriptHandler" data:data responseCallback:^(id response) {
-        NSLog(@"testJavascriptHandler responded: %@", response);
+    [_bridge callHandler:@"oc_js_role" data:data responseCallback:^(id response) {
+        NSLog(@"oc_js_role responded: %@", response);
     }];
 }
 

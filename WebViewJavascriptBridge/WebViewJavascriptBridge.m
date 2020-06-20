@@ -184,11 +184,14 @@
     if (webView != _webView) { return YES; }
     
     NSURL *url = [request URL];
+    NSLog(@"url = %@", url.absoluteString);
     __strong WVJB_WEBVIEW_DELEGATE_TYPE* strongDelegate = _webViewDelegate;
     if ([_base isWebViewJavascriptBridgeURL:url]) {
         
+        // js 中setupWebViewJavascriptBridge调用触发加载url：__bridge_loaded__
         if ([_base isBridgeLoadedURL:url]) {
             
+            // 想webView注入WebViewJavascriptBridge_JS文件中的js
             [_base injectJavascriptFile];
             
         } else if ([_base isQueueMessageURL:url]) {

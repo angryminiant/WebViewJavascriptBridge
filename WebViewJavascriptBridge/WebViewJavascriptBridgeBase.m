@@ -121,7 +121,7 @@ static int logMaxLength = 500;
     }
 }
 
-/// 注入js
+/// 想webView注入js
 - (void)injectJavascriptFile {
         
     NSString *js = WebViewJavascriptBridge_js();

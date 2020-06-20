@@ -8,6 +8,8 @@
 #import <Foundation/Foundation.h>
 
 // url.scheme
+//文件WebViewJavascriptBridge_JS中 CUSTOM_PROTOCOL_SCHEME
+//文件ExampleApp中 WVJBIframe.src
 #define kOldProtocolScheme @"wvjbscheme"
 #define kNewProtocolScheme @"https"
 

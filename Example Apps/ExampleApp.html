@@ -15,16 +15,27 @@
 	}
 
     function setupWebViewJavascriptBridge(callback) {
-        if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
-        if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+        if (window.WebViewJavascriptBridge) {
+            alert(1);
+            return callback(WebViewJavascriptBridge);
+        }
+        if (window.WVJBCallbacks) {
+            alert(2);
+            return window.WVJBCallbacks.push(callback);
+        }
         window.WVJBCallbacks = [callback];
         var WVJBIframe = document.createElement('iframe');
         WVJBIframe.style.display = 'none';
         WVJBIframe.src = 'https://__bridge_loaded__';
         document.documentElement.appendChild(WVJBIframe);
-        setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+        setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0);
+
+
+<!--        step-2-->
     }
 
+<!--    step-1-->
+    
     setupWebViewJavascriptBridge(function(bridge) {
 		var uniqueId = 1
 		function log(message, data) {
@@ -36,24 +47,26 @@
 			else { log.appendChild(el) }
 		}
 
-		bridge.registerHandler('testJavascriptHandler', function(data, responseCallback) {
-			log('ObjC called testJavascriptHandler with', data)
+		bridge.registerHandler('oc_js_role', function(data, responseCallback) {
+			log('oc_js_role data ', data)
 			var responseData = { 'Javascript Says':'Right back atcha!' }
-			log('JS responding with', responseData)
+			log('oc_js_role responseData', responseData)
 			responseCallback(responseData)
 		})
 
 		document.body.appendChild(document.createElement('br'))
 
 		var callbackButton = document.getElementById('buttons').appendChild(document.createElement('button'))
-		callbackButton.innerHTML = 'js call ios '
+        callbackButton.innerHTML = 'js call ios';
 		callbackButton.onclick = function(e) {
 			e.preventDefault()
-			log('JS calling handler "js_ios_role"')
+			log('js_ios_role')
 			bridge.callHandler('js_ios_role', {'foo': 'bar'}, function(response) {
-				log('JS got response', response)
+				log('js_ios_role response ', response)
 			})
 		}
+
+<!--        step-3-->
 	})
 	</script>
 	<div id='buttons'></div> <div id='log'></div>
