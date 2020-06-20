@@ -166,12 +166,19 @@
 			attributes = {
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Marcus Westin";
+				TargetAttributes = {
+					2C136A2017641106004C7401 = {
+						DevelopmentTeam = AV59255865;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = 2C136A1C17641106004C7401 /* Build configuration list for PBXProject "ExampleApp-OSX" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 2C136A1817641106004C7401;
@@ -311,13 +318,17 @@
 		2C136A3F17641106004C7401 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = AV59255865;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExampleApp-OSX/ExampleApp-OSX-Prefix.pch";
 				INFOPLIST_FILE = "ExampleApp-OSX/ExampleApp-OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "WebViewJavascriptBridge.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -325,13 +336,17 @@
 		2C136A4017641106004C7401 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = AV59255865;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExampleApp-OSX/ExampleApp-OSX-Prefix.pch";
 				INFOPLIST_FILE = "ExampleApp-OSX/ExampleApp-OSX-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "WebViewJavascriptBridge.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

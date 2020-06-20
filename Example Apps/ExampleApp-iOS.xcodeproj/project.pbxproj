@@ -70,10 +70,10 @@
 				2C3E7C451C5A890A00A1E322 /* WebViewJavascriptBridge_JS.m */,
 				2C1562A8176B9F6200B4AE50 /* WebViewJavascriptBridge.h */,
 				2C1562A9176B9F6200B4AE50 /* WebViewJavascriptBridge.m */,
-				0E8082DA19EDC32300479452 /* WKWebViewJavascriptBridge.m */,
-				0E8082D919EDC32300479452 /* WKWebViewJavascriptBridge.h */,
-				0E50601B1A01B442000BEEEA /* WebViewJavascriptBridgeBase.m */,
 				0E50601D1A01B44C000BEEEA /* WebViewJavascriptBridgeBase.h */,
+				0E50601B1A01B442000BEEEA /* WebViewJavascriptBridgeBase.m */,
+				0E8082D919EDC32300479452 /* WKWebViewJavascriptBridge.h */,
+				0E8082DA19EDC32300479452 /* WKWebViewJavascriptBridge.m */,
 			);
 			name = WebViewJavascriptBridge;
 			path = ../../WebViewJavascriptBridge;
@@ -173,6 +173,7 @@
 				ORGANIZATIONNAME = "Marcus Westin";
 				TargetAttributes = {
 					2CEB3EBA1602563600548120 = {
+						DevelopmentTeam = AV59255865;
 						LastSwiftMigration = 0820;
 					};
 				};
@@ -182,6 +183,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 2CEB3EB01602563600548120;
@@ -316,6 +318,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = AV59255865;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExampleApp-iOS/ExampleApp-iOS-Prefix.pch";
 				INFOPLIST_FILE = "ExampleApp-iOS/ExampleApp-iOS-Info.plist";
@@ -333,6 +336,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = AV59255865;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ExampleApp-iOS/ExampleApp-iOS-Prefix.pch";
 				INFOPLIST_FILE = "ExampleApp-iOS/ExampleApp-iOS-Info.plist";

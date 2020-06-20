@@ -22,7 +22,7 @@
     WVJB_WEAK WVJB_WEBVIEW_TYPE* _webView;
     WVJB_WEAK id _webViewDelegate;
     long _uniqueId;
-    WebViewJavascriptBridgeBase *_base;
+    WebViewJavascriptBridgeBase *_base;    
 }
 
 /* API
@@ -38,6 +38,7 @@
 + (instancetype)bridgeForWebView:(id)webView {
     return [self bridge:webView];
 }
+
 + (instancetype)bridge:(id)webView {
 #if defined supportsWKWebView
     if ([webView isKindOfClass:[WKWebView class]]) {
@@ -104,6 +105,7 @@
     return [_webView stringByEvaluatingJavaScriptFromString:javascriptCommand];
 }
 
+
 #if defined WVJB_PLATFORM_OSX
 /* Platform specific internals: OSX
  **********************************/
@@ -158,6 +160,7 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
+    
     if (webView != _webView) { return; }
     
     __strong WVJB_WEBVIEW_DELEGATE_TYPE* strongDelegate = _webViewDelegate;
@@ -167,6 +170,7 @@
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    
     if (webView != _webView) { return; }
     
     __strong WVJB_WEBVIEW_DELEGATE_TYPE* strongDelegate = _webViewDelegate;
@@ -176,23 +180,35 @@
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
     if (webView != _webView) { return YES; }
     
     NSURL *url = [request URL];
     __strong WVJB_WEBVIEW_DELEGATE_TYPE* strongDelegate = _webViewDelegate;
     if ([_base isWebViewJavascriptBridgeURL:url]) {
+        
         if ([_base isBridgeLoadedURL:url]) {
+            
             [_base injectJavascriptFile];
+            
         } else if ([_base isQueueMessageURL:url]) {
+            
             NSString *messageQueueString = [self _evaluateJavascript:[_base webViewJavascriptFetchQueyCommand]];
             [_base flushMessageQueue:messageQueueString];
+            
         } else {
+            
             [_base logUnkownMessage:url];
+            
         }
         return NO;
+        
     } else if (strongDelegate && [strongDelegate respondsToSelector:@selector(webView:shouldStartLoadWithRequest:navigationType:)]) {
+        
         return [strongDelegate webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
+        
     } else {
+        
         return YES;
     }
 }
@@ -202,6 +218,7 @@
     
     __strong WVJB_WEBVIEW_DELEGATE_TYPE* strongDelegate = _webViewDelegate;
     if (strongDelegate && [strongDelegate respondsToSelector:@selector(webViewDidStartLoad:)]) {
+       
         [strongDelegate webViewDidStartLoad:webView];
     }
 }
