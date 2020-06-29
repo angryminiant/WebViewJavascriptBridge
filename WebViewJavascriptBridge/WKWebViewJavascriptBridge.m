@@ -92,6 +92,7 @@
 
 
 - (void)WKFlushMessageQueue {
+    
     [_webView evaluateJavaScript:[_base webViewJavascriptFetchQueyCommand] completionHandler:^(NSString* result, NSError* error) {
         if (error != nil) {
             NSLog(@"WebViewJavascriptBridge: WARNING: Error when trying to fetch data from WKWebView: %@", error);
@@ -139,11 +140,15 @@
     __strong typeof(_webViewDelegate) strongDelegate = _webViewDelegate;
 
     if ([_base isWebViewJavascriptBridgeURL:url]) {
-        if ([_base isBridgeLoadedURL:url]) {
+                
+        if ([_base isBridgeLoadedURL:url]) {// js 中setupWebViewJavascriptBridge调用触发加载url：__bridge_loaded__
             [_base injectJavascriptFile];
-        } else if ([_base isQueueMessageURL:url]) {
+        }
+        else if ([_base isQueueMessageURL:url]) {// 想webView注入WebViewJavascriptBridge_JS文件中的js
+            // 拦截数据
             [self WKFlushMessageQueue];
-        } else {
+        }
+        else {
             [_base logUnkownMessage:url];
         }
         decisionHandler(WKNavigationActionPolicyCancel);

@@ -31,8 +31,14 @@
         NSLog(@"js_ios_role called: %@", data);
         responseCallback(@"Response from js_ios_role");
     }];
+    [_bridge registerHandler:@"js_ios_role_1" handler:^(id data, WVJBResponseCallback responseCallback) {
+        responseCallback(@"Response from js_ios_role_1");
+    }];
     
-    [_bridge callHandler:@"oc_js_role" data:@{ @"foo":@"before ready" }];
+    [_bridge callHandler:@"oc_js_role" data:@{ @"foo":@"before ready" } responseCallback:^(id responseData) {
+        
+    }];
+    [_bridge callHandler:@"oc_js_role_1" data:@{ @"foo":@"before ready_1" }];
     
     [self renderButtons:webView];
     [self loadExamplePage:webView];

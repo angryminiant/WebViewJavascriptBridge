@@ -61,9 +61,12 @@
 		callbackButton.onclick = function(e) {
 			e.preventDefault()
 			log('js_ios_role')
-			bridge.callHandler('js_ios_role', {'foo': 'bar'}, function(response) {
-				log('js_ios_role response ', response)
-			})
+<!--            bridge.callHandler('js_ios_role', {'method': 'getUserInfo','params':'{\'code\':\'566\'}'}, function(response) {-->
+<!--				log('js_ios_role response ', response)-->
+<!--			})-->
+            bridge.callHandler('js_ios_role', {'method': 'getUserInfo'}, function(response) {
+                log('js_ios_role response ', response)
+            })
 		}
 
 <!--        step-3-->

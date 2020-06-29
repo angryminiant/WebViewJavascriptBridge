@@ -65,13 +65,14 @@ NSString * WebViewJavascriptBridge_js() {
 			responseCallbacks[callbackId] = responseCallback;
 			message['callbackId'] = callbackId;
 		}
-		sendMessageQueue.push(message);
-		messagingIframe.src = CUSTOM_PROTOCOL_SCHEME + '://' + QUEUE_HAS_MESSAGE;
+		sendMessageQueue.push(message);//push 添加msg
+		messagingIframe.src = CUSTOM_PROTOCOL_SCHEME + '://' + QUEUE_HAS_MESSAGE;// 加载url链接
 	}
 
+        // WKWeb 拦截获取数据
 	function _fetchQueue() {
-		var messageQueueString = JSON.stringify(sendMessageQueue);
-		sendMessageQueue = [];
+		var messageQueueString = JSON.stringify(sendMessageQueue);// 序列化
+		sendMessageQueue = [];// clear清空
 		return messageQueueString;
 	}
 
@@ -88,15 +89,23 @@ NSString * WebViewJavascriptBridge_js() {
 			var responseCallback;
 
 			if (message.responseId) {
+                
+                // js调用oc，oc回调数据给js
 				responseCallback = responseCallbacks[message.responseId];
 				if (!responseCallback) {
 					return;
 				}
 				responseCallback(message.responseData);
 				delete responseCallbacks[message.responseId];
-			} else {
+			}
+            else {
+                
+                // oc调用js，js回调数据给oc
 				if (message.callbackId) {
-					var callbackResponseId = message.callbackId;
+					
+                    var callbackResponseId = message.callbackId;
+                    
+                    // 定义回调给oc的block，在js的register方法中调用该block，传递数据给oc
 					responseCallback = function(responseData) {
 						_doSend({ handlerName:message.handlerName, responseId:callbackResponseId, responseData:responseData });
 					};

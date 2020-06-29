@@ -88,13 +88,17 @@ static int logMaxLength = 500;
         
         NSString* responseId = message[@"responseId"];
         if (responseId) {
+            // oc调用js，js回调数据给oc
             WVJBResponseCallback responseCallback = _responseCallbacks[responseId];
             responseCallback(message[@"responseData"]);
             [self.responseCallbacks removeObjectForKey:responseId];
-        } else {
+        }
+        else {
+            // js调用oc，oc回调数据给js
             WVJBResponseCallback responseCallback = NULL;
             NSString* callbackId = message[@"callbackId"];
             if (callbackId) {
+                // 定义回调给js的block，在oc的register方法中调用该block，传递数据给js
                 responseCallback = ^(id responseData) {
                     if (responseData == nil) {
                         responseData = [NSNull null];
